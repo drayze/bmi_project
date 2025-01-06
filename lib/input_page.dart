@@ -6,8 +6,6 @@ import 'constants.dart';
 
 enum Gender { male, female, needInput }
 
-dynamic height = 70;
-
 class InputPage extends StatefulWidget {
   const InputPage({super.key});
 
@@ -17,7 +15,10 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Gender selectedGender = Gender.needInput;
-  //num height = 70;
+
+  dynamic height = 70;
+  dynamic weight = 65;
+  dynamic age = 21;
 
   @override
   Widget build(BuildContext context) {
@@ -29,47 +30,45 @@ class _InputPageState extends State<InputPage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
-            child: Row(
-              children: [
-                Expanded(
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selectedGender = Gender.male;
-                      });
-                    },
-                    child: ReuseableCard(
-                      colorU: selectedGender == Gender.male
-                          ? kActiveCardColor
-                          : kInactiveCardColor,
-                      cardChild: CustomeIcon(
-                        myIcon: FontAwesomeIcons.mars,
-                        myText: 'MALE',
-                      ),
-                    ),
+              child: Row(
+            children: [
+              Expanded(
+                child: ReuseableCard(
+                  onPress: () {
+                    setState(() {
+                      selectedGender = Gender.male;
+                    });
+                  },
+                  colorU: selectedGender == Gender.male
+                      ? kActiveCardColor
+                      : kInactiveCardColor,
+                  cardChild: CustomeIcon(
+                    myIcon: FontAwesomeIcons.mars,
+                    myText: 'MALE',
                   ),
                 ),
-                Expanded(
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selectedGender = Gender.female;
-                      });
-                    },
-                    child: ReuseableCard(
-                      colorU: selectedGender == Gender.female
-                          ? kActiveCardColor
-                          : kInactiveCardColor,
-                      cardChild: CustomeIcon(
-                          myIcon: FontAwesomeIcons.venus, myText: 'FEMALE'),
-                    ),
+              ),
+              Expanded(
+                child: ReuseableCard(
+                  onPress: () {
+                    setState(() {
+                      selectedGender = Gender.female;
+                    });
+                  },
+                  colorU: selectedGender == Gender.female
+                      ? kActiveCardColor
+                      : kInactiveCardColor,
+                  cardChild: CustomeIcon(
+                    myIcon: FontAwesomeIcons.venus,
+                    myText: 'FEMALE',
                   ),
                 ),
-              ],
-            ),
-          ),
+              ),
+            ],
+          )),
           Expanded(
             child: ReuseableCard(
+              onPress: () {},
               colorU: kActiveCardColor,
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -84,7 +83,7 @@ class _InputPageState extends State<InputPage> {
                     textBaseline: TextBaseline.alphabetic,
                     children: [
                       Text(
-                        '${height}',
+                        height.toString(),
                         style: kNumberStyleContent,
                       ),
                       Text(
@@ -95,26 +94,26 @@ class _InputPageState extends State<InputPage> {
                   ),
                   SliderTheme(
                     data: SliderTheme.of(context).copyWith(
+                      inactiveTrackColor: Color(0xff8d8e98),
+                      activeTrackColor: Colors.white,
+                      thumbColor: Color(0xffeb1555),
+                      overlayColor: Color(0x29eb1555),
                       thumbShape:
                           RoundSliderThumbShape(enabledThumbRadius: 15.0),
                       overlayShape:
                           RoundSliderOverlayShape(overlayRadius: 25.0),
-                      thumbColor: Color(0xffeb1555),
-                      activeTrackColor: Colors.white,
-                      inactiveTrackColor: Color(0xff8d8e98),
-                      overlayColor: Color(0x29eb1555),
                     ),
                     child: Slider(
-                        value: height.toDouble(),
-                        min: 40,
-                        max: 90,
-                        onChanged: (double newValue) {
-                          setState(() {
-                            height = newValue.round();
-                          });
-                          print(newValue);
-                        }),
-                  )
+                      value: height.toDouble(),
+                      min: 40,
+                      max: 90,
+                      onChanged: (double newValue) {
+                        setState(() {
+                          height = newValue.round();
+                        });
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -124,14 +123,100 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: ReuseableCard(
+                    onPress: () {},
                     colorU: kActiveCardColor,
-                    cardChild: Row(),
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'WEIGHT',
+                          style: kTextStyleContent,
+                        ),
+                        Text(
+                          weight.toString(),
+                          style: kNumberStyleContent,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundedIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPressed: () {
+                                setState(() {
+                                  weight++;
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            RoundedIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPressed: () {
+                                setState(() {
+                                  weight--;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Expanded(
                   child: ReuseableCard(
+                    onPress: () {},
                     colorU: kActiveCardColor,
-                    cardChild: Row(),
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'AGE',
+                          style: kTextStyleContent,
+                        ),
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.center,
+                        //   crossAxisAlignment: CrossAxisAlignment.baseline,
+                        //   textBaseline: TextBaseline.alphabetic,
+                        //children: [
+                        Text(
+                          age.toString(),
+                          style: kNumberStyleContent,
+                        ),
+                        // Text(
+                        //   'YRS',
+                        //   style: kTextStyleContent,
+                        // ),
+                        //],
+                        //),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundedIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPressed: () {
+                                setState(
+                                  () {
+                                    age++;
+                                  },
+                                );
+                              },
+                            ),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            RoundedIconButton(
+                                icon: FontAwesomeIcons.minus,
+                                onPressed: () {
+                                  setState(() {
+                                    age--;
+                                  });
+                                }),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -145,6 +230,29 @@ class _InputPageState extends State<InputPage> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class RoundedIconButton extends StatelessWidget {
+  const RoundedIconButton(
+      {super.key, required this.icon, required this.onPressed});
+
+  final IconData icon;
+  final VoidCallback? onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      elevation: 0.0,
+      child: Icon(icon),
+      onPressed: onPressed,
+      constraints: BoxConstraints.tightFor(
+        width: 46.0,
+        height: 46.0,
+      ),
+      shape: CircleBorder(),
+      fillColor: Color(0xff4c4f5e),
     );
   }
 }
