@@ -1,4 +1,6 @@
+import 'package:bmi_cal/reusable_card.dart';
 import 'package:flutter/material.dart';
+import 'constants.dart';
 
 class ResultsPage extends StatelessWidget {
   @override
@@ -7,7 +9,47 @@ class ResultsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('BMI Calulator'),
       ),
-      body: Text('S\'up?!'),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            child: Container(
+              child: Text(
+                'Your Results',
+                style: kReultsTitleStyle,
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 5,
+            child: ReuseableCard(
+              colorU: kActiveCardColor,
+              cardChild: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Smoking Hot',
+                    style: kResultsTextStyle,
+                  ),
+                  Text(
+                    '180',
+                    style: kBMITextStyle,
+                  ),
+                  Text(
+                    'BLAH, BLAH',
+                    style: kBodyTextStyle,
+                  ),
+                ],
+              ),
+              onPress: () {},
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
+
+//children:
