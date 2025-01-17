@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../components/icon_content.dart';
 
 import '../constants.dart';
-import 'resultsPage.dart';
+import 'results_page.dart';
 import 'package:bmi_cal/components/bottom_button.dart';
 import 'package:bmi_cal/components/rounded_icon_button.dart';
 import 'package:bmi_cal/components/reusable_card.dart';
