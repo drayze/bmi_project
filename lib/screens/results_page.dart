@@ -51,7 +51,7 @@ class ResultsPage extends StatelessWidget {
             BottomButton(
               buttonTitle: 'RE-CALCULATE BMI',
               onTap: () {
-                Navigator.push(context,
+                Navigator.pop(context,
                     MaterialPageRoute(builder: (context) => InputPage()));
               },
             ),
