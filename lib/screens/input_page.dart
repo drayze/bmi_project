@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'icon_content.dart';
-import 'reusable_card.dart';
-import 'constants.dart';
+import '../components/icon_content.dart';
+
+import '../constants.dart';
 import 'resultsPage.dart';
+import 'package:bmi_cal/components/bottom_button.dart';
+import 'package:bmi_cal/components/rounded_icon_button.dart';
+import 'package:bmi_cal/components/reusable_card.dart';
 
 enum Gender { male, female, needInput }
 
@@ -232,54 +235,5 @@ class _InputPageState extends State<InputPage> {
             ),
           ],
         ));
-  }
-}
-
-class BottomButton extends StatelessWidget {
-  BottomButton({required this.buttonTitle, required this.onTap});
-  final GestureTapCallback? onTap;
-  final String buttonTitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        child: Center(
-          child: Text(
-            buttonTitle,
-            style: kLargeButtonTextStyle,
-          ),
-        ),
-        color: kBottomCardColor,
-        margin: EdgeInsets.only(top: 10.0),
-        padding: EdgeInsets.only(bottom: 20.0),
-        width: double.infinity,
-        height: kBottomContainerHeight,
-      ),
-    );
-  }
-}
-
-class RoundedIconButton extends StatelessWidget {
-  const RoundedIconButton(
-      {super.key, required this.icon, required this.onPressed});
-
-  final IconData icon;
-  final VoidCallback? onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      elevation: 0.0,
-      child: Icon(icon),
-      onPressed: onPressed,
-      constraints: BoxConstraints.tightFor(
-        width: 46.0,
-        height: 46.0,
-      ),
-      shape: CircleBorder(),
-      fillColor: Color(0xff4c4f5e),
-    );
   }
 }
