@@ -5,6 +5,16 @@ import 'input_page.dart';
 import 'package:bmi_cal/components/bottom_button.dart';
 
 class ResultsPage extends StatelessWidget {
+  ResultsPage({
+    required this.bmiResult,
+    required this.resultText,
+    required this.feedback,
+  });
+
+  final String bmiResult;
+  final String resultText;
+  final String feedback;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,15 +43,15 @@ class ResultsPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      'Smoking Hot',
+                      resultText.toUpperCase(),
                       style: kResultsTextStyle,
                     ),
                     Text(
-                      '180',
+                      bmiResult,
                       style: kBMITextStyle,
                     ),
                     Text(
-                      'BLAH, BLAH',
+                      feedback,
                       style: kBodyTextStyle,
                     ),
                   ],
