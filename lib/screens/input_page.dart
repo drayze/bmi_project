@@ -21,7 +21,7 @@ class _InputPageState extends State<InputPage> {
   Gender selectedGender = Gender.needInput;
 
   dynamic height = 70;
-  dynamic weight = 65;
+  dynamic weight = 165;
   dynamic age = 21;
 
   @override
