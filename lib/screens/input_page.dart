@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../components/icon_content.dart';
-
+import 'calculation_brain.dart';
 import '../constants.dart';
 import 'results_page.dart';
 import 'package:bmi_cal/components/bottom_button.dart';
@@ -21,7 +21,7 @@ class _InputPageState extends State<InputPage> {
   Gender selectedGender = Gender.needInput;
 
   dynamic height = 70;
-  dynamic weight = 65;
+  dynamic weight = 165;
   dynamic age = 21;
 
   @override
@@ -229,8 +229,18 @@ class _InputPageState extends State<InputPage> {
             BottomButton(
               buttonTitle: 'CALCULATE',
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ResultsPage()));
+                CalculationBrain calc =
+                    CalculationBrain(height: height, weight: weight);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ResultsPage(
+                      bmiResult: calc.CalculateBMI(),
+                      resultText: calc.getResult(),
+                      feedback: calc.giveFeedback(),
+                    ),
+                  ),
+                );
               },
             ),
           ],
